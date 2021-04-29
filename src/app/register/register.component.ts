@@ -17,20 +17,18 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
   register(){
-    alert("Registration Successfull");
+    
     var accno=this.accnum;
     var password=this.pswd;
     var name=this.accname;
-    let details=this.ds.account_details
-    if (accno in details) {
-      alert("User is already exist, Please Login")
-  }
-  else {
-    details[accno]={
-      name,accno,password,amount:0
+    var result = this.ds.register(name,accno,password)
+    if(result){
+      alert("Registration Successful");
+      this.router.navigateByUrl("")
     }
-    alert("Registration Successful");
-    this.router.navigateByUrl("")
+    else{
+      alert("User is already exist, Please Login")
+    }
   }
   }
-}
+

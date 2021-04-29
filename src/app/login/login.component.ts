@@ -31,21 +31,13 @@ export class LoginComponent implements OnInit {
   login(){
     
     var accno = this.accnum;
-        var pwd = this.pswd;
-        let details = this.ds.account_details;
-        if (accno in details) {
-            if (pwd == details[accno]["password"]) {
-                alert("Login  Success");
-                this.router.navigateByUrl("dashboard")
-            }
-            else {
-              alert("Incorrect Password");
-            }
-        }
-        else {
-          alert("Invalid Account");
-        }
-  }
+    var password = this.pswd;
+    const result=this.ds.login(accno,password) 
+    if(result){
+      alert("Login  Success");
+      this.router.navigateByUrl("dashboard")
+    } 
+     }
   register(){
     this.router.navigateByUrl("register")
     
